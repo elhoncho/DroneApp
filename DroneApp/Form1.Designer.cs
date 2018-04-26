@@ -89,6 +89,7 @@
             this.txtLat.Size = new System.Drawing.Size(100, 20);
             this.txtLat.TabIndex = 2;
             this.txtLat.Text = "33.584462";
+            this.txtLat.TextChanged += new System.EventHandler(this.txtLat_TextChanged);
             // 
             // label1
             // 
@@ -155,7 +156,6 @@
             // 
             // btnTerminal
             // 
-            this.btnTerminal.Enabled = false;
             this.btnTerminal.Location = new System.Drawing.Point(12, 519);
             this.btnTerminal.Name = "btnTerminal";
             this.btnTerminal.Size = new System.Drawing.Size(75, 23);
@@ -176,7 +176,6 @@
             // 
             // txtCommand
             // 
-            this.txtCommand.Enabled = false;
             this.txtCommand.Location = new System.Drawing.Point(13, 484);
             this.txtCommand.Name = "txtCommand";
             this.txtCommand.Size = new System.Drawing.Size(201, 20);
