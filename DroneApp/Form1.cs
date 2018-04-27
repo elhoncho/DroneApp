@@ -54,32 +54,39 @@ namespace DroneApp
 
         private void btnConnect_Click(object sender, EventArgs e)
         {
-
-            serialPort = new SerialPort();
-
-            if(serialPort is SerialPort)
+            //Make sure that a COM Port and Baud Rate have been selected
+            if (comboPorts.SelectedIndex > -1 && comboBaud.SelectedIndex > -1)
             {
-                serialPort.PortName = "COM4";
-                serialPort.DataBits = 8;
-                serialPort.Parity = Parity.None;
-                serialPort.StopBits = StopBits.One;
-                serialPort.BaudRate = 9600;
-                serialPort.RtsEnable = true;
+                serialPort = new SerialPort();
 
-                try
+                if (serialPort is SerialPort)
                 {
-                    serialPort.Open();
-                    serialPort.DiscardOutBuffer();
-                    serialPort.DiscardInBuffer();
 
-                    serialPort.DataReceived += new SerialDataReceivedEventHandler(responseHandler);
+                    serialPort.PortName = comboPorts.SelectedItem.ToString();
+                    serialPort.DataBits = 8;
+                    serialPort.Parity = Parity.None;
+                    serialPort.StopBits = StopBits.One;
+                    serialPort.BaudRate = Convert.ToInt32(comboBaud.SelectedItem.ToString());
+                    serialPort.RtsEnable = true;
+
+                    try
+                    {
+                        serialPort.Open();
+                        serialPort.DiscardOutBuffer();
+                        serialPort.DiscardInBuffer();
+
+                        serialPort.DataReceived += new SerialDataReceivedEventHandler(responseHandler);
+                        comboPorts.Enabled = false;
+                        comboBaud.Enabled = false;
+                        btnConnect.Enabled = false;
+                    }
+                    catch (Exception exc)
+                    {
+                        txtTerminal.Text = exc.ToString();
+                    }
                 }
-                catch (Exception exc)
-                {
-                    txtTerminal.Text = exc.ToString();
-                }
+                packet.Init(serialPort);
             }
-            packet.Init(serialPort);
         }
 
         private void responseHandler(object sender, SerialDataReceivedEventArgs args)
@@ -94,7 +101,7 @@ namespace DroneApp
                 Match match = regex.Match(command);
                 if (match.Success)
                 {
-                    command = "LAT: " + match.Groups[1].Value + "\r\nLONG: " + match.Groups[2].Value + "\r\n";
+                    command += "\r\nLAT: " + match.Groups[1].Value + "\r\nLONG: " + match.Groups[2].Value + "\r\n";
 
                     map.MapProvider = GMap.NET.MapProviders.OpenStreetMapProvider.Instance;
                     map.Manager.Mode = GMap.NET.AccessMode.ServerOnly;
@@ -153,7 +160,8 @@ namespace DroneApp
 
                 map.MinZoom = 1;
                 map.MaxZoom = 20;
-                map.Zoom = 15;
+                map.Zoom = Convert.ToInt32(txtZoom.Text);
+                //map.Zoom = Convert.ToInt32(txtZoom.Text);
             }
         }
 
@@ -166,6 +174,36 @@ namespace DroneApp
         private void txtLat_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtCommand_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtCommand_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.Enter)
+            {
+                btnTerminal_Click(this, new EventArgs());
+                e.Handled = true;
+                e.SuppressKeyPress = true;
+            }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBaud_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SetText("");
         }
     }
 }
