@@ -39,8 +39,14 @@ namespace DroneApp
             //txBytes.Add(CRC);
 
             //serialPort.Write((Encoding.ASCII.GetString(txBytes.ToArray())));
+
+
             txData.Trim();
-            serialPort.Write(txData+"\r\n");
+            //Send Command
+            serialPort.Write("TX" + txData.Length.ToString("D3") + "\r\n");
+            //Send Data
+            serialPort.Write(txData);
+            
         }
         public string RxPacket(string rxPacket)
         {

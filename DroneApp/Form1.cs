@@ -96,6 +96,7 @@ namespace DroneApp
             
             if (command.EndsWith("\r\n"))
             {
+                command = command.Trim();
                 //Check Lat Long
                 Regex regex = new Regex(@"lat=(.*?)\,lon=(.*?)\,");
                 Match match = regex.Match(command);
@@ -107,6 +108,13 @@ namespace DroneApp
                     map.Manager.Mode = GMap.NET.AccessMode.ServerOnly;
 
                     SetMap(match.Groups[1].Value, match.Groups[2].Value);
+                }
+
+                Regex regex2 = new Regex(@"RX\d{3}");
+                Match match2 = regex2.Match(command);
+                if (match2.Success)
+                {
+                    packet.TxPacket("AK" + command.Substring(match2.Index + 2, 3));
                 }
 
                 txt = command + txt;
@@ -204,6 +212,47 @@ namespace DroneApp
         private void button1_Click(object sender, EventArgs e)
         {
             SetText("");
+        }
+
+        private void btnMode_Click(object sender, EventArgs e)
+        {
+            packet.TxPacket("outputBuffer.append(\" % s\" % vehicle.mode)");
+        }
+
+        private void btnStabe_Click(object sender, EventArgs e)
+        {
+            packet.TxPacket("vehicle.mode = VehicleMode(\"STABILIZE\")");
+        }
+
+        private void btnGuid_Click(object sender, EventArgs e)
+        {
+            packet.TxPacket("vehicle.mode = VehicleMode(\"GUIDED\")");
+        }
+
+        private void btnLand_Click(object sender, EventArgs e)
+        {
+            packet.TxPacket("vehicle.mode = VehicleMode(\"LAND\")");
+        }
+
+        private void btnArm_Click(object sender, EventArgs e)
+        {
+            packet.TxPacket("vehicle.armed = True");
+        }
+
+        private void btnGetArm_Click(object sender, EventArgs e)
+        {
+            packet.TxPacket("outputBuffer.append(\" % s\" % vehicle.armed)");
+        }
+
+        private void btnGpsUpdate_Click(object sender, EventArgs e)
+        {
+            packet.TxPacket("outputBuffer.append(\" % s\" % vehicle.location.global_frame)");
+        }
+
+        private void btnTakeOff_Click(object sender, EventArgs e)
+        {
+            packet.TxPacket("vehicle.simple_takeoff(4)");
+            
         }
     }
 }

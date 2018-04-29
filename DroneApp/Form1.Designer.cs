@@ -45,13 +45,21 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnStabe = new System.Windows.Forms.Button();
+            this.btnMode = new System.Windows.Forms.Button();
+            this.btnGuid = new System.Windows.Forms.Button();
+            this.btnLand = new System.Windows.Forms.Button();
+            this.btnArm = new System.Windows.Forms.Button();
+            this.btnGpsUpdate = new System.Windows.Forms.Button();
+            this.btnGetArm = new System.Windows.Forms.Button();
+            this.btnTakeOff = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // splitter1
             // 
             this.splitter1.Location = new System.Drawing.Point(0, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(224, 554);
+            this.splitter1.Size = new System.Drawing.Size(320, 554);
             this.splitter1.TabIndex = 0;
             this.splitter1.TabStop = false;
             // 
@@ -66,7 +74,7 @@
             this.map.GrayScaleMode = false;
             this.map.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.map.LevelsKeepInMemmory = 5;
-            this.map.Location = new System.Drawing.Point(230, 12);
+            this.map.Location = new System.Drawing.Point(326, 12);
             this.map.MarkersEnabled = true;
             this.map.MaxZoom = 1;
             this.map.MinZoom = 18;
@@ -80,9 +88,9 @@
             this.map.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.map.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.map.ShowTileGridLines = false;
-            this.map.Size = new System.Drawing.Size(558, 530);
+            this.map.Size = new System.Drawing.Size(462, 530);
             this.map.TabIndex = 1;
-            this.map.Zoom = 18D;
+            this.map.Zoom = 1D;
             // 
             // txtLat
             // 
@@ -139,11 +147,11 @@
             // 
             // txtTerminal
             // 
-            this.txtTerminal.Location = new System.Drawing.Point(12, 215);
+            this.txtTerminal.Location = new System.Drawing.Point(12, 268);
             this.txtTerminal.Multiline = true;
             this.txtTerminal.Name = "txtTerminal";
             this.txtTerminal.ReadOnly = true;
-            this.txtTerminal.Size = new System.Drawing.Size(202, 262);
+            this.txtTerminal.Size = new System.Drawing.Size(202, 209);
             this.txtTerminal.TabIndex = 9;
             // 
             // btnTerminal
@@ -158,7 +166,7 @@
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(74, 186);
+            this.btnConnect.Location = new System.Drawing.Point(70, 239);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(75, 23);
             this.btnConnect.TabIndex = 13;
@@ -179,7 +187,7 @@
             // 
             this.comboPorts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboPorts.FormattingEnabled = true;
-            this.comboPorts.Location = new System.Drawing.Point(12, 159);
+            this.comboPorts.Location = new System.Drawing.Point(12, 212);
             this.comboPorts.Name = "comboPorts";
             this.comboPorts.Size = new System.Drawing.Size(99, 21);
             this.comboPorts.TabIndex = 15;
@@ -190,7 +198,7 @@
             this.comboBaud.FormattingEnabled = true;
             this.comboBaud.Items.AddRange(new object[] {
             "9600"});
-            this.comboBaud.Location = new System.Drawing.Point(118, 159);
+            this.comboBaud.Location = new System.Drawing.Point(118, 212);
             this.comboBaud.Name = "comboBaud";
             this.comboBaud.Size = new System.Drawing.Size(96, 21);
             this.comboBaud.TabIndex = 16;
@@ -199,7 +207,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(35, 143);
+            this.label4.Location = new System.Drawing.Point(37, 196);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(50, 13);
             this.label4.TabIndex = 17;
@@ -209,7 +217,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(134, 143);
+            this.label5.Location = new System.Drawing.Point(137, 196);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(58, 13);
             this.label5.TabIndex = 18;
@@ -225,11 +233,99 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btnStabe
+            // 
+            this.btnStabe.Location = new System.Drawing.Point(230, 61);
+            this.btnStabe.Name = "btnStabe";
+            this.btnStabe.Size = new System.Drawing.Size(75, 23);
+            this.btnStabe.TabIndex = 20;
+            this.btnStabe.Text = "Stabilize";
+            this.btnStabe.UseVisualStyleBackColor = true;
+            this.btnStabe.Click += new System.EventHandler(this.btnStabe_Click);
+            // 
+            // btnMode
+            // 
+            this.btnMode.Location = new System.Drawing.Point(230, 32);
+            this.btnMode.Name = "btnMode";
+            this.btnMode.Size = new System.Drawing.Size(75, 23);
+            this.btnMode.TabIndex = 21;
+            this.btnMode.Text = "Get Mode";
+            this.btnMode.UseVisualStyleBackColor = true;
+            this.btnMode.Click += new System.EventHandler(this.btnMode_Click);
+            // 
+            // btnGuid
+            // 
+            this.btnGuid.Location = new System.Drawing.Point(230, 90);
+            this.btnGuid.Name = "btnGuid";
+            this.btnGuid.Size = new System.Drawing.Size(75, 23);
+            this.btnGuid.TabIndex = 22;
+            this.btnGuid.Text = "Guided";
+            this.btnGuid.UseVisualStyleBackColor = true;
+            this.btnGuid.Click += new System.EventHandler(this.btnGuid_Click);
+            // 
+            // btnLand
+            // 
+            this.btnLand.Location = new System.Drawing.Point(230, 119);
+            this.btnLand.Name = "btnLand";
+            this.btnLand.Size = new System.Drawing.Size(75, 23);
+            this.btnLand.TabIndex = 23;
+            this.btnLand.Text = "Land";
+            this.btnLand.UseVisualStyleBackColor = true;
+            this.btnLand.Click += new System.EventHandler(this.btnLand_Click);
+            // 
+            // btnArm
+            // 
+            this.btnArm.Location = new System.Drawing.Point(230, 227);
+            this.btnArm.Name = "btnArm";
+            this.btnArm.Size = new System.Drawing.Size(75, 23);
+            this.btnArm.TabIndex = 24;
+            this.btnArm.Text = "Arm";
+            this.btnArm.UseVisualStyleBackColor = true;
+            this.btnArm.Click += new System.EventHandler(this.btnArm_Click);
+            // 
+            // btnGpsUpdate
+            // 
+            this.btnGpsUpdate.Location = new System.Drawing.Point(230, 313);
+            this.btnGpsUpdate.Name = "btnGpsUpdate";
+            this.btnGpsUpdate.Size = new System.Drawing.Size(75, 23);
+            this.btnGpsUpdate.TabIndex = 25;
+            this.btnGpsUpdate.Text = "GPS Update";
+            this.btnGpsUpdate.UseVisualStyleBackColor = true;
+            this.btnGpsUpdate.Click += new System.EventHandler(this.btnGpsUpdate_Click);
+            // 
+            // btnGetArm
+            // 
+            this.btnGetArm.Location = new System.Drawing.Point(230, 266);
+            this.btnGetArm.Name = "btnGetArm";
+            this.btnGetArm.Size = new System.Drawing.Size(75, 23);
+            this.btnGetArm.TabIndex = 26;
+            this.btnGetArm.Text = "Get Armed";
+            this.btnGetArm.UseVisualStyleBackColor = true;
+            this.btnGetArm.Click += new System.EventHandler(this.btnGetArm_Click);
+            // 
+            // btnTakeOff
+            // 
+            this.btnTakeOff.Location = new System.Drawing.Point(230, 171);
+            this.btnTakeOff.Name = "btnTakeOff";
+            this.btnTakeOff.Size = new System.Drawing.Size(75, 23);
+            this.btnTakeOff.TabIndex = 27;
+            this.btnTakeOff.Text = "Takeoff";
+            this.btnTakeOff.UseVisualStyleBackColor = true;
+            this.btnTakeOff.Click += new System.EventHandler(this.btnTakeOff_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 554);
+            this.Controls.Add(this.btnTakeOff);
+            this.Controls.Add(this.btnGetArm);
+            this.Controls.Add(this.btnGpsUpdate);
+            this.Controls.Add(this.btnArm);
+            this.Controls.Add(this.btnLand);
+            this.Controls.Add(this.btnGuid);
+            this.Controls.Add(this.btnMode);
+            this.Controls.Add(this.btnStabe);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -273,6 +369,14 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnStabe;
+        private System.Windows.Forms.Button btnMode;
+        private System.Windows.Forms.Button btnGuid;
+        private System.Windows.Forms.Button btnLand;
+        private System.Windows.Forms.Button btnArm;
+        private System.Windows.Forms.Button btnGpsUpdate;
+        private System.Windows.Forms.Button btnGetArm;
+        private System.Windows.Forms.Button btnTakeOff;
     }
 }
 
