@@ -117,7 +117,7 @@ namespace DroneApp
                     packet.TxPacket("AK" + command.Substring(match2.Index + 2, 3));
                 }
 
-                txt = command + txt;
+                txt = command + "\r\n" + txt;
                 command = "";
             }
 
@@ -211,7 +211,8 @@ namespace DroneApp
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SetText("");
+            txt = "";
+            SetText(txt);
         }
 
         private void btnMode_Click(object sender, EventArgs e)
@@ -253,6 +254,23 @@ namespace DroneApp
         {
             packet.TxPacket("vehicle.simple_takeoff(4)");
             
+        }
+
+        private void map_MouseDown(object sender, MouseEventArgs e)
+        {
+            double lat = map.FromLocalToLatLng(e.X, e.Y).Lat;
+            double lng = map.FromLocalToLatLng(e.X, e.Y).Lng;
+            packet.TxPacket("global dest; dest = LGR("+lat+", "+lng+", 4)");
+        }
+
+        private void btnFlyToDest_Click(object sender, EventArgs e)
+        {
+            packet.TxPacket("vehicle.simple_goto(dest)");
+        }
+
+        private void btnGetDest_Click(object sender, EventArgs e)
+        {
+            packet.TxPacket("outputBuffer.append(\"%s\" % str(dest)[23:])");
         }
     }
 }
